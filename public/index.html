@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Chess</title>
+</head>
+<body>
+    <h1>Socket.IO Chess</h1>
+    <!-- Your chessboard UI can go here -->
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+// Simulate a move
+const moveData = {
+    piece: 'bishop',
+    from: 'A2',
+    to: 'B3'
+};
+socket.emit('move', moveData);
+
+
+        // Listen for moves from other clients
+        socket.on('move', (moveData) => {
+            // Update the chessboard UI with the received move
+            console.log('Received move from server:', moveData);
+        });
+    </script>
+</body>
+</html>
