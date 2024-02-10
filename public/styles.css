@@ -1,0 +1,28 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .button {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    margin: 0 10px;
+  }
+
+  .button.left {
+    background-color: #FF5733; /* Adjust color as needed */
+  }
+
+  .button.right {
+    background-color: #33FF57; /* Adjust color as needed */
+  }
+
+  .button.up {
+    background-color: #337AFF; /* Adjust color as needed */
+  }
+
+  .button.down {
+    background-color: #FF33FC; /* Adjust color as needed */
+  }

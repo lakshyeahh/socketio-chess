@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Socket.IO Chess</title>
+    <link rel="stylesheet" href="./styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket.IO Example</title>
 </head>
 <body>
-    <h1>Socket.IO Chess</h1>
-    <!-- Your chessboard UI can go here -->
+  <h1>Move it</h1>
+  <div style="width: 50px; height: 50px; background-color: yellow; translate: 230px 150px;"class="box">box</div>
+  <button style="width: 100px; height: 40px; font-size: 16px; background-color: #FF5733; translate: 0px 100px;" onclick="sendButtonPress('l')">Left</button>
+  <button style="width: 100px; height: 40px; font-size: 16px; background-color: #33FF57; translate: 300px 100px;" onclick="sendButtonPress('r')">Right</button>
+  <button style="width: 100px; height: 40px; font-size: 16px; background-color: #337AFF;" onclick="sendButtonPress('u')">Up</button>
+  <button style="width: 100px; height: 40px; font-size: 16px; background-color: #FF33FC; translate:  -100px 200px;" onclick="sendButtonPress('d')">Down</button>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
 
-// Simulate a move
-const moveData = {
-    piece: 'bishop',
-    from: 'A2',
-    to: 'B3'
-};
-socket.emit('move', moveData);
+    function sendButtonPress(direction) {
+      socket.emit('buttonPressed', { direction });
+    }
 
+    
 
-        // Listen for moves from other clients
-        socket.on('move', (moveData) => {
-            // Update the chessboard UI with the received move
-            console.log('Received move from server:', moveData);
-        });
-    </script>
+    socket.on('buttonPressed', (data) => {
+      console.log('Movement received:', data.direction);
+      alert('Movement received:', data.direction);
+    });
+  </script>
 </body>
 </html>
